@@ -23,7 +23,7 @@
   ],
   "rules": {
     "camelcase": "off",
-    "no-underscore-dangle": "error",
+    "no-underscore-dangle": "off",
     "no-useless-constructor": "off",
     "no-param-reassign":"off",
     "prettier/prettier": "error",

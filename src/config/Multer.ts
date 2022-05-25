@@ -1,6 +1,5 @@
 import multer from 'multer';
 import path from 'path';
-import crypto from 'crypto';
 import { Request } from 'express';
 import AppError from '../shared/errors/AppError';
 
@@ -13,16 +12,10 @@ interface FileFilterCallback {
 
 export default {
   tmpFolder,
-  uploadsFolder: path.resolve(tmpFolder, 'uploads'),
+  uploadsFolder: path.resolve(tmpFolder),
 
   storage: multer.diskStorage({
     destination: tmpFolder,
-    filename(request, file, callback) {
-      const fileHash = crypto.randomBytes(10).toString('hex');
-      const fileName = `${fileHash + path.extname(file.originalname)}`;
-
-      return callback(null, fileName);
-    },
   }),
   limits: {
     fileSize: 1024 * 1024 * 50,
@@ -32,7 +25,7 @@ export default {
     file: Express.Multer.File,
     callback: FileFilterCallback,
   ): void {
-    const allowedMimes = ['.png', '.jpeg', '.jpg', '.svg', '.img', '.mp4'];
+    const allowedMimes = ['.xml'];
 
     const fileType = file.originalname.substring(
       file.originalname.indexOf('.'),

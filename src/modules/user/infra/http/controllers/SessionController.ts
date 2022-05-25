@@ -3,7 +3,6 @@ import BCryptHashProvider from '../../../../../shared/providers/hashProvider/imp
 import MailerProvider from '../../../../../shared/providers/MailProvider/implementations/MailerProvider';
 import HandlebarseMailTemplateProvider from '../../../../../shared/providers/MailTemplateProvider/implementations/HandlebarseMailTemplateProvider';
 import ChangePasswordUserService from '../../../services/ChangeUserPassword';
-import CheckUserEmailService from '../../../services/CheckUserEmailService';
 import CreateUserPasswordService from '../../../services/CreateUserPasswordService';
 import RequestResetUserPasswordService from '../../../services/RequestResetUserPasswordService';
 import ResetUserPasswordService from '../../../services/ResetUserPasswordService';
@@ -45,18 +44,6 @@ class SessionsController {
       newPassword,
       userId,
     );
-
-    return res.json(user);
-  }
-
-  public async checkEmail(req: Request, res: Response): Promise<Response> {
-    const userRepository = new UserRepository();
-
-    const { email } = req.query;
-
-    const resetPassword = new CheckUserEmailService(userRepository);
-
-    const user = await resetPassword.execute(String(email));
 
     return res.json(user);
   }

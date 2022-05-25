@@ -42,16 +42,6 @@ sessionsRouter.post(
 );
 
 sessionsRouter.post(
-  '/check-email',
-  celebrate({
-    [Segments.QUERY]: {
-      email: Joi.string().required(),
-    },
-  }),
-  sessionsController.checkEmail,
-);
-
-sessionsRouter.post(
   '/reset-password',
   celebrate({
     [Segments.BODY]: {

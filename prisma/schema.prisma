@@ -19,8 +19,35 @@ model User {
   email_checked   Boolean  @default(false)
   forgotten_token String?
   access_level    Int      @default(1)
+  Clients         Client[]
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
 
-
+model Client {
+  id             Int      @id @default(autoincrement())
+  name           String
+  cpf            String   
+  marital_status Int
+  father         String?
+  mother         String?
+  partner        String?
+  rg             String
+  salary         Decimal  @db.Decimal(10, 2)
+  kind           String
+  electoral_card String
+  gender         String   @db.VarChar(1)
+  cellphone      String?
+  zipcode        String
+  street         String
+  number         String
+  complement     String?
+  district       String
+  city           String
+  email          String
+  birthday       DateTime? 
+  user_id        Int
+  User           User     @relation(fields: [user_id], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}

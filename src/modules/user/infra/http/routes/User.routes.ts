@@ -19,10 +19,8 @@ userRouter.post(
           tlds: { allow: ['com', 'net', 'br'] },
         })
         .required(),
-      password: Joi.string().allow(''),
+      password: Joi.string().required(),
       access_level: Joi.number().integer(),
-      appName: Joi.string().allow(''),
-      link: Joi.string().allow(''),
     },
   }),
   Auth,
@@ -44,7 +42,12 @@ userRouter.get(
   userController.findAll,
 );
 
-userRouter.get('/user', Auth, userController.findOne);
+userRouter.get(
+  '/user/:id',
+  celebrate({ [Segments.PARAMS]: { id: Joi.number().integer().required() } }),
+  Auth,
+  userController.findOne,
+);
 
 userRouter.post(
   '/support',
@@ -64,6 +67,7 @@ userRouter.put(
   '/user',
   celebrate({
     [Segments.BODY]: {
+      id: Joi.number().integer().required(),
       name: Joi.string().allow(''),
       email: Joi.string()
         .email({

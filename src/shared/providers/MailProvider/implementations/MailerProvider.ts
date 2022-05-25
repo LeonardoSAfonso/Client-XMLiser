@@ -28,8 +28,8 @@ export default class MailerProvider implements IMailProvider {
   }: ISendMailDTO): Promise<void> {
     await this.client.sendMail({
       from: {
-        name: from?.name || 'Default',
-        address: from?.email || 'Default',
+        name: from?.name || 'XMLiser',
+        address: from?.email || 'Leonardo.s_afonso@hotmail.com',
       },
       to: { name: to.name, address: to.email },
       subject,

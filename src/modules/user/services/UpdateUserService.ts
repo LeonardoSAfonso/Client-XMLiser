@@ -24,7 +24,7 @@ export default class UpdateUserService {
     if (email) {
       const checkUserEmailExist = await this.userRepository.findByEmail(email);
 
-      if (checkUserEmailExist && email !== user.email) {
+      if (checkUserEmailExist && checkUserEmailExist.email !== user.email) {
         throw new AppError(
           'ERRO: O endereço de e-mail já está sendo utilizado',
           409,

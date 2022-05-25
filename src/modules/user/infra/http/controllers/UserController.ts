@@ -15,28 +15,18 @@ import UserRepository from '../../database/repositories/UserRepository';
 export default class UserController {
   public async create(req: Request, res: Response): Promise<Response> {
     const userRepository = new UserRepository();
-    const mailTemplateProvider = new HandlebarseMailTemplateProvider();
-    const mailProvider = new MailerProvider(mailTemplateProvider);
     const hashProvider = new BCryptHashProvider();
 
-    const { name, email, password, access_level, appName, link } = req.body;
+    const { name, email, password, access_level } = req.body;
 
-    const createUser = new CreateUserService(
-      userRepository,
-      hashProvider,
-      mailProvider,
-    );
+    const createUser = new CreateUserService(userRepository, hashProvider);
 
-    const user = await createUser.execute(
-      {
-        name,
-        email,
-        password,
-        access_level,
-      },
-      appName,
-      link,
-    );
+    const user = await createUser.execute({
+      name,
+      email,
+      password,
+      access_level,
+    });
 
     return res.json(user);
   }
@@ -72,7 +62,7 @@ export default class UserController {
   public async findOne(req: Request, res: Response): Promise<Response> {
     const userRepository = new UserRepository();
 
-    const { id } = req.user;
+    const { id } = req.params;
 
     const findOneUser = new FindOneUserService(userRepository);
 
@@ -97,12 +87,12 @@ export default class UserController {
   public async update(req: Request, res: Response): Promise<Response> {
     const userRepository = new UserRepository();
 
-    const { name, email, access_level } = req.body;
+    const { id, name, email, access_level } = req.body;
 
     const updateUser = new UpdateUserService(userRepository);
 
     const user = await updateUser.execute(
-      req.user.id,
+      id,
       {
         name,
         email,
