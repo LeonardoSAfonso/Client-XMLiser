@@ -126,6 +126,13 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 ---
 
+Para o front-end em angular, acesse clone o repositorio no link abaixo
+
+- https://github.com/LeonardoSAfonso/Client-XMLiser-front
+
+Instale suas dependencias e o inicie com 
+yarn ng serve -o
+
 ## Autor
 
 [Leonardo Afonso](https://github.com/LeonardoSAfonso)
