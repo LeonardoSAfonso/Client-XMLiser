@@ -133,6 +133,9 @@ Para o front-end em angular, acesse clone o repositorio no link abaixo
 Instale suas dependencias e o inicie com 
 yarn ng serve -o
 
+Para facilitar todo o entendimento segue o passo a passo de toda a instalação e utilização do projeto.
+ - [Passo a Passo](https://drive.google.com/file/d/1aLl8_Ih4v-F7dzPeTd_NswSuoOXK9_Pp/view?usp=sharing)
+
 ## Autor
 
 [Leonardo Afonso](https://github.com/LeonardoSAfonso)
